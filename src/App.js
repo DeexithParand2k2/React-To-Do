@@ -1,7 +1,11 @@
 import React,{ useEffect, useState } from "react";
+import {BrowserRouter as Router,Route, Routes} from 'react-router-dom'
+
 import AddTask from "./components/AddTask";
 import Header from './components/Header';
 import Tasks from './components/Tasks';
+import Footer from "./components/Footer";
+import About from "./components/About";
 
 function App() {
 
@@ -79,15 +83,44 @@ function App() {
   }
 
   return (
-    <div className="container">
-      
-      <Header title="To-Do" showTask={showTask} setShowTask={setShowTask} />
 
-      {showTask && <AddTask addon={addNewTask}/>}
-      
-      {taskList.length>0 ? (<Tasks taskList={taskList} delfunc={deleteTask}/> )
-        : ('No tasks to show')}
-    </div>
+    <Router>
+
+      <div className="container">
+        
+        <Header title="To-Do" showTask={showTask} setShowTask={setShowTask} />
+
+        <Routes>
+          {/* <Route path='/' exact render={(props)=>(
+            <>
+              {showTask && <AddTask addon={addNewTask}/>}
+              
+              {taskList.length>0 ? (<Tasks taskList={taskList} delfunc={deleteTask}/> )
+                : ('No tasks to show')}
+            </>
+          )} /> */}
+
+          <Route path='/' exact element={
+            <>
+              {showTask && <AddTask addon={addNewTask}/>}
+              
+              {taskList.length>0 ? (<Tasks taskList={taskList} delfunc={deleteTask}/> )
+                : ('No tasks to show')}
+
+              <Footer />
+            </>
+          } />
+
+        </Routes>
+
+        <Routes>
+          <Route path='/about' element={<About />} />
+        </Routes>
+
+      </div>
+
+    </Router>
+
   );
 }
 
