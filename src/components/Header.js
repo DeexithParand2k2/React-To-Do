@@ -1,7 +1,10 @@
 import React from "react";
 import Button from "./Button";
+import { useLocation } from "react-router-dom";
 
 const Header = ({ title,showTask,setShowTask }) =>{
+
+    const location = useLocation();
 
     //what button will do onclick
     const onClick = () =>{
@@ -13,11 +16,15 @@ const Header = ({ title,showTask,setShowTask }) =>{
             <h1>{title}</h1>
 
             {/*Your button component*/}
-            {
-                showTask===true ? (<Button onMyClick={onClick} color='tomato' text='Close' />) 
-                :   
-                (<Button onMyClick={onClick} color='green' text='Add' />)   
+
+            {location.pathname === '/' &&
+                (
+                    showTask===true ? (<Button onMyClick={onClick} color='tomato' text='Close' />) 
+                    :   
+                    (<Button onMyClick={onClick} color='green' text='Add' />)   
+                )
             }
+            
         </div>
     );
 }

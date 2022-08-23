@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const Footer = () =>{
 
     return(
-        <footer>
+        <footer className="footer">
             <p>Author: Hege Refsnes</p>
-            <p><a href='/About'>About us</a></p>
+            <p><Link to='/About'>About us</Link></p>
         </footer>
     );
 }
