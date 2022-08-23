@@ -1,19 +1,23 @@
 import React from "react";
 import Button from "./Button";
 
-const Header = (props) =>{
+const Header = ({ title,showTask,setShowTask }) =>{
 
     //what button will do onclick
     const onClick = () =>{
-        console.log('This is on my click');
+        setShowTask(!showTask)
     }
 
     return(
         <div className="head">
-            <h1>{props.title}</h1>
+            <h1>{title}</h1>
 
             {/*Your button component*/}
-            <Button onMyClick={onClick} color='green' text='Add' />
+            {
+                showTask===true ? (<Button onMyClick={onClick} color='tomato' text='Close' />) 
+                :   
+                (<Button onMyClick={onClick} color='green' text='Add' />)   
+            }
         </div>
     );
 }

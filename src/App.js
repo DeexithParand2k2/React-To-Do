@@ -3,8 +3,11 @@ import AddTask from "./components/AddTask";
 import Header from './components/Header';
 import Tasks from './components/Tasks';
 
-
 function App() {
+
+  const[showTask,setShowTask] = useState(()=>{
+    return false;
+  })
 
   //each task is acts as a seperate state
   const [taskList,changeTask] = useState(()=>{
@@ -59,9 +62,9 @@ function App() {
   return (
     <div className="container">
       
-      <Header title="To-Do" />
+      <Header title="To-Do" showTask={showTask} setShowTask={setShowTask} />
 
-      <AddTask addon={addNewTask}/>
+      {showTask && <AddTask addon={addNewTask}/>}
       
       {taskList.length>0 ? (<Tasks taskList={taskList} delfunc={deleteTask}/> )
         : ('No tasks to show')}
